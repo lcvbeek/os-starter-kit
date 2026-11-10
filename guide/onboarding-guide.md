@@ -91,6 +91,7 @@ my-os/                     # private git repo
 ├── context/               # curated memory, edited by hand or after you confirm
 │   ├── priorities.md      # outcomes, constraints, open questions (from A)
 │   ├── people.md          # key people, one short block each (from A2)
+│   ├── roadmap.md         # first-month checkpoints, gates, don't-build-yet triggers (section 4, 5)
 │   └── signal-cache/      # derived, written by skills, expires after ~5 weeks
 │       └── YYYY-MM-DD.md  # one digest per day: meetings, mail, chat
 ├── skills/
@@ -306,6 +307,8 @@ description: Challenge a plan, draft or decision before it goes out. Use when I 
 | Week 3 | If one skill ran every week, schedule it as a routine. Give it a log file. | More than one routine |
 | Week 4 | 15-min review: which output did you actually use? Cut what you didn't. Pick the next task from the D list. | Building anything for "later" |
 
+**Make it stick:** the dates and gates live in `context/roadmap.md`, not in chat. AGENTS.md tells Claude to read it every session. Once a checkpoint date has passed and it's still `open`, Claude raises it in its first line, shows the evidence, and asks you one question: move on or stay. A passed date alone never advances anything; your answer does.
+
 The review questions (every 2 weeks, 15 min):
 1. Which output did I use without editing? Which did I rewrite?
 2. What did I correct more than once? (That's a rule for a skill.)
@@ -316,7 +319,7 @@ The review questions (every 2 weeks, 15 min):
 
 ## 5. Don't build yet
 
-These are useful at scale and costly to start with. Add one only when the trigger shows up.
+These are useful at scale and costly to start with. Add one only when the trigger shows up. The same table lives in `context/roadmap.md` with a status per row, and Claude checks the triggers at every checkpoint.
 
 | Thing | Add when |
 |---|---|

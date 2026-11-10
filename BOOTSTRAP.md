@@ -28,6 +28,6 @@ These are the guide's "How to respond" rules. Apply them now, before AGENTS.md e
 4. **First win, same session.** Take one of the two tasks from step 0 that matches skill 1, run the skill on it, and show me the output. Log whatever I correct with oops, then update the skill once.
 5. **Commit and push everything.**
 6. **Write down my day-2 return test** (guide, section 3b): the one-line question I'll ask tomorrow, and what a good answer must contain.
-7. **End with the guide's section 4 plan** for my next four weeks, with dates.
+7. **Write `context/roadmap.md`** from the guide's section 4 plan: fill the four checkpoint dates (from today) and keep the gates and the "Don't build yet" table. Commit and push it, then tell me the four dates.
 
 Do not build anything from guide section 5. Do not add skills beyond the base kit and the two I picked.

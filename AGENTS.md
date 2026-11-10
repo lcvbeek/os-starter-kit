@@ -37,6 +37,9 @@ Scripts for mechanical work. Small model for fetching and first-pass reads. Big 
 ## Shareable output
 Anything someone else will read gets sources traced (`guide/sourcing-and-confidence.md`), no confidence tags, no mention of AI process.
 
+## Checkpoints
+Read `context/roadmap.md` at session start. If a checkpoint date has passed and its status is `open`, say so in the first line, run it with evidence, and ask me: move on or stay. Check its "Don't build yet" triggers too. Change a status only after my answer.
+
 ## Corrections
 When I correct you, run the `oops` skill: append one line to `logs/friction-log.md`. Don't wait to be asked. Review the log every two weeks (`guide/improve-loop.md`).
 
