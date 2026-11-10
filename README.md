@@ -8,7 +8,8 @@ A small personal operating system for working with Claude: a git repo that holds
 1. **Fork or "Use this template"**, and make your copy **private**. It will hold your notes about colleagues.
 2. **Connect your tools** in Claude (Settings > Connectors): Calendar, Gmail and Drive at minimum. Add Notion, Linear or Granola if your team uses them. Request any admin approval now.
 3. **Think of two real tasks** due in the next 48 hours. Claude will ask, and you'll run your first skill on one of them.
-4. Open your copy in Claude Code and say: **"Read BOOTSTRAP.md and follow it."** Then answer one question at a time.
+4. **Install a speech-to-text tool** (Wispr Flow, Typeless or similar). The interview goes faster and your answers carry more detail when you talk instead of type.
+5. Open your copy in Claude Code and say: **"Read BOOTSTRAP.md and follow it."** Then answer one question at a time.
 
 Full walkthrough, including the first 48 hours and the first month: [`guide/onboarding-guide.md`](guide/onboarding-guide.md).
 

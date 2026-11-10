@@ -12,7 +12,7 @@ A way to set up a small personal OS with Claude in about 90 minutes, from scratc
 |---|---|---|
 | Inputs | Where signal comes from | The tools you connect (mail, calendar, meeting notes, docs). Read-only. |
 | Memory | Files in a git repo, read before any live source | `context/` (confirmed facts, plus `context/signal-cache/` for derived digests of live sources) |
-| Work | Repeatable jobs, one instruction file each | 2 skills, picked in the interview below |
+| Work | Repeatable jobs, one instruction file each | 4 base skills (oops, powerup, grill, pressure-test) plus 2 task skills picked in the interview below |
 | Loop | Corrections become rules | `logs/friction-log.md` + a 15-minute review every 2 weeks |
 
 Rules that make it work:
@@ -43,6 +43,8 @@ How: in Claude, open **Settings > Connectors**, connect each one and sign in wit
 Meeting notes source, in order: Granola if connected, else Gemini notes in Drive, else the calendar invite and agenda. Claude says which source it used.
 
 ## 2. Session 0: the interview (45 min)
+
+**Tip: talk, don't type.** Install a speech-to-text tool (Wispr Flow, Typeless or similar) and dictate your answers. Spoken answers run longer and carry more detail than typed ones, and they come out faster. Check the transcript for names and numbers before you send.
 
 Run it live together, or let Claude interview you by following `BOOTSTRAP.md`. Answer from evidence: Claude pulls your last two weeks of calendar, mail and meeting notes, and when you're not sure, it proposes an answer from those sources for you to confirm or fix. Claude follows the AGENTS.md "How to respond" rules from its first reply: one question at a time, guesses marked with their source.
 
@@ -299,7 +301,7 @@ description: Challenge a plan, draft or decision before it goes out. Use when I 
 
 | When | Do | Skip |
 |---|---|---|
-| Week 1 | Run both skills on demand on real work. Log every correction. Check `context/signal-cache/` is filling up. | Schedules, automations |
+| Week 1 | Run the base skills and your two task skills on demand on real work. Log every correction. Check `context/signal-cache/` is filling up. | Schedules, automations |
 | Week 2 | Fix each skill from its friction-log lines (15 min). Drop a skill not used 3 times. | Adding skills |
 | Week 3 | If one skill ran every week, schedule it as a routine. Give it a log file. | More than one routine |
 | Week 4 | 15-min review: which output did you actually use? Cut what you didn't. Pick the next task from the D list. | Building anything for "later" |
