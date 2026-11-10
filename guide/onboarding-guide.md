@@ -12,7 +12,7 @@ A way to set up a small personal OS with Claude in about 90 minutes, from scratc
 |---|---|---|
 | Inputs | Where signal comes from | The tools you connect (mail, calendar, meeting notes, docs). Read-only. |
 | Memory | Files in a git repo, read before any live source | `context/` (confirmed facts, plus `context/signal-cache/` for derived digests of live sources) |
-| Work | Repeatable jobs, one instruction file each | stakeholder-intel, 4 base skills (oops, powerup, grill, pressure-test), plus 2 task skills picked in the interview below |
+| Work | Repeatable jobs, one instruction file each | stakeholder-intel, an opt-in coach, 4 base skills (oops, powerup, grill, pressure-test), plus 2 task skills picked in the interview below |
 | Loop | Corrections become rules | `logs/friction-log.md` + a 15-minute review every 2 weeks |
 
 Rules that make it work:
@@ -79,6 +79,14 @@ Then ask: if Claude did this badly once, what's the damage? Pick tasks where a b
 2. What must it never do without asking? (Default: send anything, delete anything, edit shared docs, contact people.)
 3. Which topics or people are off limits for notes?
 
+### F. Coaching (optional, 5 min)
+Ask once, plainly: "Do you want Claude to coach you, or just do the work?" Default is no. If yes, one question at a time:
+1. Which of these: challenge my thinking before decisions, check progress on growth goals, watch where my time drifts from my priorities (L/N/O).
+2. For growth goals: one or two, and what good looks like in 3 months.
+3. How often: weekly, at each checkpoint, or only when I type /coach. And what tone: direct, gentle or blunt.
+4. Anything off limits.
+Write the answers into `context/coaching.md` and set `Status: on` or leave it `off`. You can switch it off or pause it any time by editing that line.
+
 ---
 
 ## 3. Starter structure
@@ -93,12 +101,14 @@ my-os/                     # private git repo
 │   ├── people.md          # key people, one short block each (from A2)
 │   ├── roadmap.md         # first-month checkpoints, gates, don't-build-yet triggers (section 4, 5)
 │   ├── voice.md           # how I write: seeded from sent mail, sharpened by my edits
+│   ├── coaching.md        # opt-in: goals, cadence, tone, log (off by default)
 │   └── signal-cache/      # derived, written by skills, expires after ~5 weeks
 │       └── YYYY-MM-DD.md  # one digest per day: meetings, mail, chat
 ├── skills/
 │   ├── <skill-1>/SKILL.md # top pick from D
 │   ├── <skill-2>/SKILL.md # second pick from D
 │   ├── stakeholder-intel/SKILL.md  # core: quoted signal about key people, fills signal-cache
+│   ├── coach/SKILL.md     # opt-in: coaching questions, growth goals, LNO drift
 │   ├── oops/SKILL.md      # base kit: logs corrections
 │   ├── powerup/SKILL.md   # base kit: sharpen a vague ask
 │   ├── grill/SKILL.md     # base kit: interview me to a shared decision
@@ -329,7 +339,7 @@ These are useful at scale and costly to start with. Add one only when the trigge
 |---|---|
 | Stakeholder insight pipeline (extracting quotes into a database) | You keep asking "what did X say about Y" and notes search isn't enough |
 | Automated weekly self-review of logs | You have 3+ scheduled routines and the manual review takes over 30 min |
-| More test cases (beyond the 11 seeds) | A friction-log pattern repeats. Add one case per general pattern. A `/eval` runner when you have 10+ of your own |
+| More test cases (beyond the 13 seeds) | A friction-log pattern repeats. Add one case per general pattern. A `/eval` runner when you have 10+ of your own |
 | Cost trend table across routines | 3+ run logs carry cost blocks and you want them side by side |
 | Local mirror of a database (e.g. a Notion table synced to `.jsonl`) | Skills query the same database every run and it's slow or hits limits |
 | Morning brief | You have 2+ sources worth summarising daily and you'd read it before 9 |

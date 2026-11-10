@@ -20,11 +20,12 @@ Full walkthrough, including the first 48 hours and the first month: [`guide/onbo
 | `context/` | Facts you've confirmed: priorities, key people | Claude proposes, you confirm |
 | `context/signal-cache/` | One dated digest per day of live sources (mail, chat, meetings), so Claude doesn't re-fetch. Derived, expires after ~5 weeks | Claude, automatically |
 | `context/roadmap.md` | Your first-month checkpoints with dates and gates, plus the "don't build yet" triggers. Claude checks it every session and raises a checkpoint once its date has passed | Claude writes it at setup, you answer at each checkpoint |
+| `context/coaching.md` | Opt-in, off by default. Your growth goals, cadence and tone for coaching questions that challenge your thinking and flag where your time drifts from your priorities | You set it in the interview, Claude logs after your yes |
 | `context/voice.md` | How you write, derived from your sent mail and sharpened by your edits. Read before any draft in your name | Claude proposes, you confirm |
-| `skills/` | `stakeholder-intel` (the core: quoted, current picture of your key people from mail, chat and meetings), `oops` (log a correction), `powerup` (sharpen a vague ask), `grill` (interview you to a decision), `pressure-test` (challenge a plan), plus your first two task skills | Copied, then built in the interview |
+| `skills/` | `coach` (opt-in: one coaching question at a time, growth goals, L/N/O drift), `stakeholder-intel` (the core: quoted, current picture of your key people from mail, chat and meetings), `oops` (log a correction), `powerup` (sharpen a vague ask), `grill` (interview you to a decision), `pressure-test` (challenge a plan), plus your first two task skills | Copied, then built in the interview |
 | `logs/` | `friction-log.md` (one line per correction) and, once you schedule anything, one file per run | `oops`, scheduled skills |
 | `scripts/` | `run-cost.py`: reads a session transcript and reports what the run cost and which tools pulled in the most context | Run at the end of setup and every scheduled run |
-| `evals/` | Eleven seed test cases for the shipped skills and rules, plus how to run and add your own | Pre-built, then you add from your friction log |
+| `evals/` | Thirteen seed test cases for the shipped skills and rules, plus how to run and add your own | Pre-built, then you add from your friction log |
 | `guide/` | The reasoning: cheap runs, sourcing, LNO triage, the improve loop, the skill template | Reference. Read when needed |
 
 ## Rules that make it work

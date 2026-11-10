@@ -35,6 +35,9 @@ Read at the start of every session. Fill the [brackets] during setup (see BOOTST
 Scripts for mechanical work. Small model for fetching and first-pass reads. Big model for judgment. Details: `guide/cheap-by-design.md`.
 Every scheduled run, and the end of setup, appends a `### Run cost` block from `python3 scripts/run-cost.py` to its log. If it finds no transcript, say so. Never hand-write the numbers.
 
+## Coaching (opt-in)
+Only if `context/coaching.md` says `Status: on`. At most one coaching question per session, after answering my ask, never blocking it. On L items ask for my prediction first. Mode, cadence and tone: `skills/coach/SKILL.md`. If `paused` or `off`, say nothing about it.
+
 ## Drafts in my voice
 Before drafting anything I will send, read `context/voice.md`. When I rewrite a draft, propose one line for its "From real edits" section and apply it after my yes. Draft only; I send.
 

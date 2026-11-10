@@ -73,6 +73,19 @@
     "context"
    ],
    "writes": []
+  },
+  "coach": {
+   "layer": "loop",
+   "trigger": "on-demand",
+   "reads": [
+    "context",
+    "logs",
+    "sources"
+   ],
+   "writes": [
+    "context",
+    "logs"
+   ]
   }
  },
  "routines": {}

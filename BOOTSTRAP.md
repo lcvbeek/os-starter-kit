@@ -15,6 +15,7 @@ These are the guide's "How to respond" rules. Apply them now, before AGENTS.md e
    - Tell me which source you'll use for meeting notes: Granola, else Gemini notes in Drive, else the calendar invite.
    - Ask which two real tasks of mine are due in the next 48 hours. You'll run my first skill on one of them (step 4).
 1. **Interview me** with guide section 2. Pull my last two weeks of calendar, mail and meeting notes first. When I'm not sure, propose an answer from those sources (and Notion/Linear for people, projects and products), name the source, and let me confirm or fix it. Push back if I tag too many tasks as L.
+   - **Last, ask once whether I want coaching** (guide section 2F). Default no. If yes, fill `context/coaching.md` from my answers and set `Status: on`.
 2. **Build the folder** from guide section 3. If AGENTS.md, context/ and skills/ already exist with [brackets], fill them from my answers; don't recreate them. Otherwise use the section 3 templates as the skeleton. Keep each file short. Install the four base-kit skills (oops, powerup, grill, pressure-test) as written in the guide. `skills/stakeholder-intel` and `scripts/run-cost.py` ship with the kit; keep them.
 3. **AGENTS.md must contain these rules**, in my words where possible:
    - Read context/ (incl. context/signal-cache/) before any live source; say when stale.
@@ -31,4 +32,4 @@ These are the guide's "How to respond" rules. Apply them now, before AGENTS.md e
 6. **Write down my day-2 return test** (guide, section 3b): the one-line question I'll ask tomorrow, and what a good answer must contain.
 7. **Write `context/roadmap.md`** from the guide's section 4 plan: fill the four checkpoint dates (from today) and keep the gates and the "Don't build yet" table. Commit and push it, then tell me the four dates.
 
-Do not build anything from guide section 5. Do not add skills beyond the base kit, stakeholder-intel and the two I picked.
+Do not build anything from guide section 5. Do not add skills beyond the base kit, stakeholder-intel, coach (opt-in) and the two I picked.
