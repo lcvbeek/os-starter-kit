@@ -1,10 +1,10 @@
 ---
 name: oops
-description: Log a correction to friction-log.md in one line whenever I correct an output, rewrite something, or type /oops.
+description: Log a correction to logs/friction-log.md in one line whenever I correct an output, rewrite something, or type /oops.
 ---
 # Oops
 ## Autonomy boundary
-- MAY append one line to friction-log.md. Never edit old lines.
+- MAY append one line to logs/friction-log.md. Never edit old lines.
 - NEVER fix the skill in the same step. Logging is not applying.
 ## Method
 1. Write what you produced and what I changed it to, specifically.

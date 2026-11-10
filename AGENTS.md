@@ -38,7 +38,7 @@ Scripts for mechanical work. Small model for fetching and first-pass reads. Big 
 Anything someone else will read gets sources traced (`guide/sourcing-and-confidence.md`), no confidence tags, no mention of AI process.
 
 ## Corrections
-When I correct you, run the `oops` skill: append one line to `friction-log.md`. Don't wait to be asked. Review the log every two weeks (`guide/improve-loop.md`).
+When I correct you, run the `oops` skill: append one line to `logs/friction-log.md`. Don't wait to be asked. Review the log every two weeks (`guide/improve-loop.md`).
 
 ## Git
 Commit and push after every reply that wrote files. End such replies with one line: `Pushed · <hash> · <paths>`. A cloud session drops unpushed files.

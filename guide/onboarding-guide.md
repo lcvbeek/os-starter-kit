@@ -13,7 +13,7 @@ A way to set up a small personal OS with Claude in about 90 minutes, from scratc
 | Inputs | Where signal comes from | The tools you connect (mail, calendar, meeting notes, docs). Read-only. |
 | Memory | Files in a git repo, read before any live source | `context/` (confirmed facts), `cache/` (digests of live sources) |
 | Work | Repeatable jobs, one instruction file each | 2 skills, picked in the interview below |
-| Loop | Corrections become rules | `friction-log.md` + a 15-minute review every 2 weeks |
+| Loop | Corrections become rules | `logs/friction-log.md` + a 15-minute review every 2 weeks |
 
 Rules that make it work:
 - **Memory before live sources.** Claude reads your files first, and says when they look stale.
@@ -44,7 +44,7 @@ Meeting notes source, in order: Granola if connected, else Gemini notes in Drive
 
 ## 2. Session 0: the interview (45 min)
 
-Run it live together, or let Claude interview you with the bootstrap prompt. Answer from evidence: Claude pulls your last two weeks of calendar, mail and meeting notes, and when you're not sure, it proposes an answer from those sources for you to confirm or fix. Claude follows the AGENTS.md "How to respond" rules from its first reply: one question at a time, guesses marked with their source.
+Run it live together, or let Claude interview you by following `BOOTSTRAP.md`. Answer from evidence: Claude pulls your last two weeks of calendar, mail and meeting notes, and when you're not sure, it proposes an answer from those sources for you to confirm or fix. Claude follows the AGENTS.md "How to respond" rules from its first reply: one question at a time, guesses marked with their source.
 
 ### A. Role and outcomes (10 min)
 1. What are you measured on this quarter? Name at most three outcomes.
@@ -96,9 +96,9 @@ my-os/                     # private git repo
 │   ├── <skill-2>/SKILL.md # second pick from D
 │   ├── oops/SKILL.md      # base kit: logs corrections
 │   ├── powerup/SKILL.md   # base kit: sharpen a vague ask
-│   └── grill/SKILL.md     # base kit: challenge a plan or draft
-├── friction-log.md        # one line per correction
-└── logs/                  # one file per skill once it runs on a schedule
+│   ├── grill/SKILL.md     # base kit: interview me to a shared decision
+│   └── pressure-test/SKILL.md  # base kit: challenge a plan or draft
+└── logs/                  # friction-log.md (corrections) + one file per scheduled skill
 ```
 
 ### Repo setup (15 min, once)
@@ -117,7 +117,7 @@ Cost grows with the number of turns in a session, because every turn re-reads ev
 | `context/` | Facts you've confirmed: priorities, people, glossary | You, or Claude after you say yes | Has an `as of` date at the top. Never overwritten silently. |
 | `cache/` | Short digests of live sources (one file per day) | Skills, automatically | Regenerable: safe to delete and rebuild. Never the source of truth. |
 | `logs/` | One entry per scheduled run: what it did, what failed | Each scheduled skill | Append-only. Read in the 2-week review. |
-| `friction-log.md` | Corrections | oops skill | Append-only. |
+| `logs/friction-log.md` | Corrections | oops skill | Append-only. |
 
 Rules that keep it accurate:
 - **Read local first, then go live.** A skill checks `context/` and `cache/` before calling any tool. If the newest file is over a week old, it says so and goes live.
@@ -208,7 +208,7 @@ description: <one line: what it does and when to use it>
 <exact shape: a 5-bullet summary, a draft message, a table>
 ```
 
-### Base kit: three skills everyone gets (copy as is)
+### Base kit: four skills everyone gets (copy as is)
 
 These are work modes, not tasks. They make every session better regardless of role, so they ship on day 1. The two task skills from the interview sit on top.
 
@@ -216,17 +216,18 @@ These are work modes, not tasks. They make every session better regardless of ro
 |---|---|---|
 | `/oops` | You correct an output | Logs it in one line with the pattern. Feeds the 2-week review. |
 | `/powerup` | An ask is vague and the work is big | Asks up to 4 questions, rewrites the ask, waits for go. |
-| `/grill` | A plan, draft or decision is about to go out | 3 counterarguments, 2 hidden assumptions, 1 open question, a pre-mortem. |
+| `/grill` | A decision or plan is still foggy and needs your input | Interviews you one question at a time, each with its recommended answer, until you share a decision. Never answers for you. |
+| `/pressure-test` | A plan, draft or decision is about to go out | 3 counterarguments, 2 hidden assumptions, 1 open question, a pre-mortem. |
 Saving is a rule in AGENTS.md, not a skill. A skill you have to remember to type gets skipped; a rule runs every time.
 
 ```markdown
 ---
 name: oops
-description: Log a correction to friction-log.md in one line whenever I correct an output, rewrite something, or type /oops.
+description: Log a correction to logs/friction-log.md in one line whenever I correct an output, rewrite something, or type /oops.
 ---
 # Oops
 ## Autonomy boundary
-- MAY append one line to friction-log.md. Never edit old lines.
+- MAY append one line to logs/friction-log.md. Never edit old lines.
 - NEVER fix the skill in the same step. Logging is not applying.
 ## Method
 1. Write what you produced and what I changed it to, specifically.
@@ -253,16 +254,32 @@ description: Sharpen a vague or big ask before starting the work. Use when I say
 ```markdown
 ---
 name: grill
-description: Challenge a plan, draft or decision before it goes out. Use when I say /grill or ask to pressure-test something.
+description: Interview me, one question at a time, until we share a decision. Use when I say /grill, or a plan or decision is foggy and needs my input before anyone acts.
 ---
 # Grill
 ## Autonomy boundary
-- Chat only. NEVER edit the thing being grilled.
+- Chat only. NEVER answer for me, and NEVER enact anything (no sends, edits or tickets) while grilling.
 ## Method
-1. Read context/priorities.md and the relevant people in context/people.md, so the challenge uses my real constraints and stakeholders.
-2. Give: 3 strongest counterarguments (steelmanned, specific), 2 hidden assumptions that must hold, 1 question I can't answer yet, and "If this fails, the most likely reason is: ...".
+1. Read context/priorities.md and context/people.md. State in one line what we are trying to decide and what "done" looks like (for example: a decision plus a stop/keep list). Confirm it with me.
+2. Ask ONE question at a time, with your recommended answer attached so I can just say yes. Wait for my reply before the next one. Never batch.
+3. If a question can be answered from the repo or a connector, look it up and show the source instead of asking me.
+4. Go breadth-first first (surface the open decisions), then deep on the ones that matter.
+5. Stop when the outcome from step 1 is reached. Write the decisions as one line each in a working doc, then name the next step.
+```
+
+```markdown
+---
+name: pressure-test
+description: Challenge a plan, draft or decision before it goes out. Use when I say /pressure-test or ask to stress-test something I'm about to commit to.
+---
+# Pressure test
+## Autonomy boundary
+- Chat only. NEVER edit the thing being tested.
+## Method
+1. Read context/priorities.md and context/people.md so the challenge uses my real constraints and stakeholders.
+2. Give: 3 strongest counterarguments (steelmanned, specific), 2 hidden assumptions that must hold, 1 question I can't answer yet, and "If this fails in 12 months, the most likely reason is: ...".
 3. Name which stakeholder would raise each objection, if one would.
-4. Offer one next step: fix the risks, steelman my side, or grill again as a named person.
+4. Offer one next step: fix the risks, steelman my side, or /grill to resolve the open question.
 ```
 
 
@@ -274,7 +291,7 @@ description: Challenge a plan, draft or decision before it goes out. Use when I 
 
 1. **Before session 0 (10 min, alone):** GitHub account ready, connectors from section 1b connected (request any admin approval now), two real tasks picked that are due in the next 48 hours. Setup friction must not eat session 0.
 2. **Hour 0, first win:** skill 1 runs on one of those real tasks. Correct it once with `/oops` and update the skill. Check that the digest and the push happened without being asked.
-3. **Day 2, return test:** fresh session, one line only, about the second real task. It should answer from `cache/` and `context/` without being told, rank by priorities, cite quotes with links, and not repeat yesterday's corrected mistake. Then `/grill` something real that's going out this week.
+3. **Day 2, return test:** fresh session, one line only, about the second real task. It should answer from `cache/` and `context/` without being told, rank by priorities, cite quotes with links, and not repeat yesterday's corrected mistake. Then `/pressure-test` something real that's going out this week.
 
 **48-hour bar:** two outputs used with light edits, one correction that stuck, and the day-2 answer needed no pasted context. If it misses, find out which store was empty or which rule wasn't followed. If the person has no repeating work, stop: this setup isn't for them.
 
@@ -313,4 +330,4 @@ These are useful at scale and costly to start with. Add one only when the trigge
 
 ## 6. Starting the setup
 
-Use [`bootstrap-prompt.md`](bootstrap-prompt.md): put this guide in the empty repo, then paste that prompt into Claude Code.
+Use [`bootstrap-prompt.md`](bootstrap-prompt.md) (called `BOOTSTRAP.md` in the starter kit): put this guide and that file in the repo root, open the repo in Claude Code, and say "Read BOOTSTRAP.md and follow it." The file holds all the instructions, so there is nothing to paste.

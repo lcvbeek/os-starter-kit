@@ -7,8 +7,8 @@ A small personal operating system for working with Claude: a git repo that holds
 ## Start (about 90 minutes, once)
 1. **Fork or "Use this template"**, and make your copy **private**. It will hold your notes about colleagues.
 2. **Connect your tools** in Claude (Settings > Connectors): Calendar, Gmail and Drive at minimum. Add Notion, Linear or Granola if your team uses them. Request any admin approval now.
-3. **Pick two real tasks** due in the next 48 hours. You'll run your first skill on one of them.
-4. Open your copy in Claude Code, paste the prompt from [`BOOTSTRAP.md`](BOOTSTRAP.md), and answer one question at a time.
+3. **Think of two real tasks** due in the next 48 hours. Claude will ask, and you'll run your first skill on one of them.
+4. Open your copy in Claude Code and say: **"Read BOOTSTRAP.md and follow it."** Then answer one question at a time.
 
 Full walkthrough, including the first 48 hours and the first month: [`guide/onboarding-guide.md`](guide/onboarding-guide.md).
 
@@ -18,9 +18,8 @@ Full walkthrough, including the first 48 hours and the first month: [`guide/onbo
 | `AGENTS.md` | Always-read rules: how Claude replies, memory first, boundaries, git | Claude fills the brackets from your interview |
 | `context/` | Facts you've confirmed: priorities, key people | Claude proposes, you confirm |
 | `cache/` | Dated digests of live sources, so Claude doesn't re-fetch | Claude, automatically |
-| `skills/` | `oops` (log a correction), `powerup` (sharpen a vague ask), `grill` (challenge a plan), plus your first two task skills | Copied, then built in the interview |
-| `friction-log.md` | One line per correction | `oops` |
-| `logs/` | One file per scheduled run, once you schedule any | Scheduled skills |
+| `skills/` | `oops` (log a correction), `powerup` (sharpen a vague ask), `grill` (interview you to a decision), `pressure-test` (challenge a plan), plus your first two task skills | Copied, then built in the interview |
+| `logs/` | `friction-log.md` (one line per correction) and, once you schedule anything, one file per run | `oops`, scheduled skills |
 | `guide/` | The reasoning: cheap runs, sourcing, LNO triage, the improve loop, the skill template | Reference. Read when needed |
 
 ## Rules that make it work
