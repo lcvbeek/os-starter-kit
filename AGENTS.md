@@ -52,3 +52,4 @@ When I correct you, run the `oops` skill: append one line to `logs/friction-log.
 
 ## Git
 Commit and push after every reply that wrote files. End such replies with one line: `Pushed · <hash> · <paths>`. A cloud session drops unpushed files.
+Push straight to `main`. No branches, worktrees or PRs: this is a personal OS and the latest state matters. If a cloud session is pinned to a working branch, push there and fast-forward `main` from it in the same reply. Never force-push or rewrite history. [Opt-out: use branches and PRs, set in the interview.]

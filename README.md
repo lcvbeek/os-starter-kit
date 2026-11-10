@@ -5,7 +5,7 @@ A small personal operating system for working with Claude: a git repo that holds
 **Read this first:** it is a skeleton. The value comes from your answers and your corrections over the next weeks, not from the files.
 
 ## Start (about 90 minutes, once)
-1. **Fork or "Use this template"**, and make your copy **private**. It will hold your notes about colleagues.
+1. **Fork or "Use this template"**, and make your copy **private**. By default Claude pushes straight to `main` (no branches or PRs); you can opt out in the interview. It will hold your notes about colleagues.
 2. **Connect your tools** in Claude (Settings > Connectors): Calendar, Gmail and Drive at minimum. Add Notion, Linear or Granola if your team uses them. Request any admin approval now.
 3. **Think of two real tasks** due in the next 48 hours. Claude will ask, and you'll run your first skill on one of them.
 4. **Install a speech-to-text tool** (Wispr Flow, Typeless or similar). The interview goes faster and your answers carry more detail when you talk instead of type.

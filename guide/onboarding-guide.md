@@ -78,6 +78,7 @@ Then ask: if Claude did this badly once, what's the damage? Pick tasks where a b
 1. Which connectors may Claude read? Which may it write to? (Start: read everything you connect, write only to the repo folder.)
 2. What must it never do without asking? (Default: send anything, delete anything, edit shared docs, contact people.)
 3. Which topics or people are off limits for notes?
+4. Git: push straight to `main` (default, since this is a personal OS and the latest state matters), or work on branches and PRs? Choose branches if anyone else commits to this repo. If branches, rewrite the Git line in AGENTS.md to say so.
 
 ### F. Coaching (optional, 5 min)
 Ask once, plainly: "Do you want Claude to coach you, or just do the work?" Default is no. If yes, one question at a time:
@@ -131,7 +132,7 @@ my-os/                     # private git repo
 ### Repo setup (15 min, once)
 1. Create a **private** GitHub repo, e.g. `my-os`. Add a `.gitignore` with `.env` and `*.key`.
 2. Open it in Claude Code (desktop, CLI or claude.ai/code). Check the connectors from section 1b are on.
-3. Rule for every session: commit and push what it wrote. Cloud sessions are thrown away, so unpushed files are lost.
+3. Rule for every session: commit and push what it wrote, straight to `main` unless you opt out in the interview (section 2E). Cloud sessions are thrown away, so unpushed files are lost.
 
 Why git and not a Claude Project: a Project can read files but skills can't write back to them, so there is no signal-cache and no log, and every question goes to the live tools again. Git also gives history for free: `git log context/` shows what changed and when.
 
