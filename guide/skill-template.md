@@ -40,5 +40,5 @@ Which step is scripted, which runs on the small model, expected turns.
 
 ## Companion bookkeeping
 - Add the skill to a one-line-per-skill table in your README.
-- Optional but valuable: a `contract.json` listing each skill's layer, trigger (on-demand/scheduled) and the stores it reads and writes, plus a lint script that fails when a SKILL.md touches a store its entry doesn't list. This catches the quiet drift where a skill starts reading something nobody planned.
+- Optional but valuable: a contract that lists each skill's layer, trigger (on-demand/scheduled) and the stores it reads and writes, plus a lint that fails when a SKILL.md touches a store its entry doesn't list. This catches the quiet drift where a skill starts reading something nobody planned. Templates are in `guide/templates/` (`contract.json`, `eval-lint.py`). Set up when the third skill lands or the first scheduled skill is added: copy `contract.json` to the repo root, `eval-lint.py` to `scripts/`, replace the example entries with your own, run `python3 scripts/eval-lint.py`, then update the contract in the same commit as any skill change.
 - One golden-case file per important rule (`evals/cases/*.md`: input, expected judgment, why). Re-run after editing the skill.

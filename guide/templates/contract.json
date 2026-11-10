@@ -1,0 +1,41 @@
+{
+ "_doc": "Who reads and writes what. Checked by eval-lint.py. Edit this in the same commit whenever a skill gains or loses a store. Store flags: external (lives outside the repo, e.g. mail, calendar), human (only I write it), terminal (a chat reply, nothing on disk). A store nobody writes fails the lint unless flagged; a store nobody reads warns. Layers are yours to define (for example capture, work, proof, loop).",
+ "stores": {
+  "context": {
+   "paths": ["context"],
+   "desc": "Confirmed facts, moved in only after I confirm",
+   "human": true
+  },
+  "logs": {
+   "paths": ["logs"],
+   "desc": "Run logs and the friction log"
+  }
+ },
+ "skills": {
+  "grill": {
+   "layer": "work",
+   "trigger": "on-demand",
+   "reads": ["context"],
+   "writes": []
+  },
+  "oops": {
+   "layer": "loop",
+   "trigger": "on-demand",
+   "reads": ["logs"],
+   "writes": ["logs"]
+  },
+  "powerup": {
+   "layer": "work",
+   "trigger": "on-demand",
+   "reads": ["context"],
+   "writes": []
+  },
+  "pressure-test": {
+   "layer": "work",
+   "trigger": "on-demand",
+   "reads": ["context"],
+   "writes": []
+  }
+ },
+ "routines": {}
+}
