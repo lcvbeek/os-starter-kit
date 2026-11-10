@@ -18,10 +18,10 @@ Read at the start of every session. Fill the [brackets] during setup (see BOOTST
 - Tag work L/N/O and size the effort to the tag (`guide/lno-triage.md`).
 
 ## Memory first, then live sources
-1. Read `context/` before calling any live tool. Read `cache/` before fetching anything again.
+1. Read `context/` before calling any live tool, including `context/signal-cache/` before fetching anything again.
 2. Check each file's date. If it's older than [1 week], say so, then fetch live.
-3. After a live fetch worth keeping, write a dated digest to `cache/<folder>/<date>.md`, with exact quotes and source links.
-4. Move something into `context/` only after I confirm it.
+3. After a live fetch worth keeping, write a dated digest to `context/signal-cache/<date>.md` (all sources for that day in one file), with exact quotes and source links. Delete digests older than [5 weeks].
+4. Move something into the top-level `context/` files only after I confirm it. Digests in `context/signal-cache/` are derived: write them freely, never treat them as confirmed.
 5. If my message contradicts a confirmed fact in `context/`, name the conflict and its source before acting.
 
 ## Boundaries

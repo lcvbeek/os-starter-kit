@@ -13,7 +13,7 @@ Rule of thumb: if you've described the same steps in a prompt three times, make 
 - Before switching a step to the cheap model where a mistake would land somewhere visible, test on one real input and note the result in the skill.
 
 ## 3. Memory before live sources
-A local file read is nearly free; a live connector call costs turns and tokens, and slow ones add retries. Keep a dated digest per day (`cache/`), prune after ~5 weeks. Fetch live only for what the files don't hold or what's stale.
+A local file read is nearly free; a live connector call costs turns and tokens, and slow ones add retries. Keep a dated digest per day (`context/signal-cache/`), prune after ~5 weeks. Fetch live only for what the files don't hold or what's stale.
 
 ## 4. Watch carry, not just output
 In an agent run, each turn re-reads everything before it. A run with 18 turns and a big context costs far more than one with 6, even if the answer is the same length. So:

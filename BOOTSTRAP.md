@@ -17,9 +17,9 @@ These are the guide's "How to respond" rules. Apply them now, before AGENTS.md e
 1. **Interview me** with guide section 2. Pull my last two weeks of calendar, mail and meeting notes first. When I'm not sure, propose an answer from those sources (and Notion/Linear for people, projects and products), name the source, and let me confirm or fix it. Push back if I tag too many tasks as L.
 2. **Build the folder** from guide section 3. If AGENTS.md, context/ and skills/ already exist with [brackets], fill them from my answers; don't recreate them. Otherwise use the section 3 templates as the skeleton. Keep each file short. Install the four base-kit skills (oops, powerup, grill, pressure-test) as written in the guide.
 3. **AGENTS.md must contain these rules**, in my words where possible:
-   - Read context/ and cache/ before any live source; say when stale.
-   - Save a dated digest to cache/ after every live fetch.
-   - Only move things into context/ after I confirm them.
+   - Read context/ (incl. context/signal-cache/) before any live source; say when stale.
+   - Save a dated digest to context/signal-cache/<date>.md after every live fetch.
+   - Only move things into the top-level context/ files after I confirm them; signal-cache digests are derived and expire.
    - Every skill has a MAY / NEVER boundary; default is suggest, I apply.
    - Tag work L/N/O and size the effort to the tag.
    - When I correct an output, log it with the oops skill.

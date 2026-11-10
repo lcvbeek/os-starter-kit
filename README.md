@@ -17,7 +17,7 @@ Full walkthrough, including the first 48 hours and the first month: [`guide/onbo
 |---|---|---|
 | `AGENTS.md` | Always-read rules: how Claude replies, memory first, boundaries, git | Claude fills the brackets from your interview |
 | `context/` | Facts you've confirmed: priorities, key people | Claude proposes, you confirm |
-| `cache/` | Dated digests of live sources, so Claude doesn't re-fetch | Claude, automatically |
+| `context/signal-cache/` | One dated digest per day of live sources (mail, chat, meetings), so Claude doesn't re-fetch. Derived, expires after ~5 weeks | Claude, automatically |
 | `skills/` | `oops` (log a correction), `powerup` (sharpen a vague ask), `grill` (interview you to a decision), `pressure-test` (challenge a plan), plus your first two task skills | Copied, then built in the interview |
 | `logs/` | `friction-log.md` (one line per correction) and, once you schedule anything, one file per run | `oops`, scheduled skills |
 | `guide/` | The reasoning: cheap runs, sourcing, LNO triage, the improve loop, the skill template | Reference. Read when needed |

@@ -11,7 +11,7 @@ A way to set up a small personal OS with Claude in about 90 minutes, from scratc
 | Part | What it is | v1 contents |
 |---|---|---|
 | Inputs | Where signal comes from | The tools you connect (mail, calendar, meeting notes, docs). Read-only. |
-| Memory | Files in a git repo, read before any live source | `context/` (confirmed facts), `cache/` (digests of live sources) |
+| Memory | Files in a git repo, read before any live source | `context/` (confirmed facts, plus `context/signal-cache/` for derived digests of live sources) |
 | Work | Repeatable jobs, one instruction file each | 2 skills, picked in the interview below |
 | Loop | Corrections become rules | `logs/friction-log.md` + a 15-minute review every 2 weeks |
 
@@ -88,9 +88,9 @@ my-os/                     # private git repo
 ├── AGENTS.md              # how Claude behaves here, what to read first
 ├── context/               # curated memory, edited by hand or after you confirm
 │   ├── priorities.md      # outcomes, constraints, open questions (from A)
-│   └── people.md          # key people, one short block each (from A2)
-├── cache/                 # derived memory, written by skills, safe to rebuild
-│   └── meetings/YYYY-MM-DD.md   # one digest per day of meetings/mail
+│   ├── people.md          # key people, one short block each (from A2)
+│   └── signal-cache/      # derived, written by skills, expires after ~5 weeks
+│       └── YYYY-MM-DD.md  # one digest per day: meetings, mail, chat
 ├── skills/
 │   ├── <skill-1>/SKILL.md # top pick from D
 │   ├── <skill-2>/SKILL.md # second pick from D
@@ -106,7 +106,7 @@ my-os/                     # private git repo
 2. Open it in Claude Code (desktop, CLI or claude.ai/code). Check the connectors from section 1b are on.
 3. Rule for every session: commit and push what it wrote. Cloud sessions are thrown away, so unpushed files are lost.
 
-Why git and not a Claude Project: a Project can read files but skills can't write back to them, so there is no cache and no log, and every question goes to the live tools again. Git also gives history for free: `git log context/` shows what changed and when.
+Why git and not a Claude Project: a Project can read files but skills can't write back to them, so there is no signal-cache and no log, and every question goes to the live tools again. Git also gives history for free: `git log context/` shows what changed and when.
 
 ### Data stores: cheap and accurate context
 
@@ -114,19 +114,19 @@ Cost grows with the number of turns in a session, because every turn re-reads ev
 
 | Store | Holds | Written by | Rule |
 |---|---|---|---|
-| `context/` | Facts you've confirmed: priorities, people, glossary | You, or Claude after you say yes | Has an `as of` date at the top. Never overwritten silently. |
-| `cache/` | Short digests of live sources (one file per day) | Skills, automatically | Regenerable: safe to delete and rebuild. Never the source of truth. |
+| `context/` (top-level files) | Facts you've confirmed: priorities, people, glossary | You, or Claude after you say yes | Has an `as of` date at the top. Never overwritten silently. |
+| `context/signal-cache/` | One short digest per day, all live sources together (meetings, mail, chat) | Skills, automatically | Derived: deleted after ~5 weeks, mostly rebuildable from the sources while they still hold the data. Never the source of truth. |
 | `logs/` | One entry per scheduled run: what it did, what failed | Each scheduled skill | Append-only. Read in the 2-week review. |
 | `logs/friction-log.md` | Corrections | oops skill | Append-only. |
 
 Rules that keep it accurate:
-- **Read local first, then go live.** A skill checks `context/` and `cache/` before calling any tool. If the newest file is over a week old, it says so and goes live.
-- **Write what you fetch.** When a skill does fetch live data, it saves a 10-20 line digest to `cache/` with the date and the source links, so the next run doesn't fetch it again.
+- **Read local first, then go live.** A skill checks `context/`, including `signal-cache/`, before calling any tool. If the newest file is over a week old, it says so and goes live.
+- **Write what you fetch.** When a skill does fetch live data, it saves a 10-20 line digest to `context/signal-cache/<date>.md` with the date and the source links, so the next run doesn't fetch it again.
 - **Quote, don't paraphrase, for anything a decision rests on.** Keep the exact sentence and its link in the digest. Paraphrased notes drift.
-- **Confirmed vs not.** Claude may write to `cache/` freely. It moves something into `context/` only after you confirm it.
+- **Confirmed vs not.** Claude may write to `context/signal-cache/` freely. It adds to the top-level `context/` files only after you confirm it.
 - **Keep private data out.** No passwords, tokens, health or HR details, or notes about people you'd mind them reading. The repo is private, but treat it as shareable.
 
-Start with `cache/meetings/` only. Add another cache folder (e.g. `cache/mail/`) when a skill keeps fetching the same source.
+One file per day, one section per source, so every skill reads the same place. Prune files older than ~5 weeks.
 
 ### AGENTS.md template
 ```markdown
@@ -138,7 +138,7 @@ Start with `cache/meetings/` only. Add another cache folder (e.g. `cache/mail/`)
 ## Read first
 - context/priorities.md before ranking or proposing anything
 - context/people.md before any question about a person
-- cache/ before calling any live tool; save a dated digest after each live fetch
+- context/signal-cache/ before calling any live tool; save a dated digest after each live fetch
 Say if a file is older than a week before relying on it.
 Commit and push everything you wrote at the end of each session.
 
@@ -157,7 +157,7 @@ Commit and push everything you wrote at the end of each session.
 
 ## Corrections and saving
 - When I correct an output, run /oops.
-- After any live fetch, save a dated digest to cache/.
+- After any live fetch, save a dated digest to context/signal-cache/<date>.md.
 - When a session learns a fact or decision, propose the context/ edit; apply after my yes.
 - Commit and push after every reply that changed a file. End that reply with one line: what was pushed.
 ```
@@ -195,9 +195,9 @@ description: <one line: what it does and when to use it>
 - NEVER: <e.g. send, edit the source doc, touch the calendar>
 
 ## Inputs
-- Local first: <context/ or cache/ files>
+- Local first: <context/ files, incl. signal-cache/>
 - Live only if local is missing or stale: <tool, and what to pull>
-- After a live fetch: save a digest to cache/<folder>/YYYY-MM-DD.md
+- After a live fetch: save a digest to context/signal-cache/YYYY-MM-DD.md
 
 ## Method
 1. ...
@@ -291,7 +291,7 @@ description: Challenge a plan, draft or decision before it goes out. Use when I 
 
 1. **Before session 0 (10 min, alone):** GitHub account ready, connectors from section 1b connected (request any admin approval now), two real tasks picked that are due in the next 48 hours. Setup friction must not eat session 0.
 2. **Hour 0, first win:** skill 1 runs on one of those real tasks. Correct it once with `/oops` and update the skill. Check that the digest and the push happened without being asked.
-3. **Day 2, return test:** fresh session, one line only, about the second real task. It should answer from `cache/` and `context/` without being told, rank by priorities, cite quotes with links, and not repeat yesterday's corrected mistake. Then `/pressure-test` something real that's going out this week.
+3. **Day 2, return test:** fresh session, one line only, about the second real task. It should answer from `context/` (incl. `signal-cache/`) without being told, rank by priorities, cite quotes with links, and not repeat yesterday's corrected mistake. Then `/pressure-test` something real that's going out this week.
 
 **48-hour bar:** two outputs used with light edits, one correction that stuck, and the day-2 answer needed no pasted context. If it misses, find out which store was empty or which rule wasn't followed. If the person has no repeating work, stop: this setup isn't for them.
 
@@ -299,7 +299,7 @@ description: Challenge a plan, draft or decision before it goes out. Use when I 
 
 | When | Do | Skip |
 |---|---|---|
-| Week 1 | Run both skills on demand on real work. Log every correction. Check `cache/` is filling up. | Schedules, automations |
+| Week 1 | Run both skills on demand on real work. Log every correction. Check `context/signal-cache/` is filling up. | Schedules, automations |
 | Week 2 | Fix each skill from its friction-log lines (15 min). Drop a skill not used 3 times. | Adding skills |
 | Week 3 | If one skill ran every week, schedule it as a routine. Give it a log file. | More than one routine |
 | Week 4 | 15-min review: which output did you actually use? Cut what you didn't. Pick the next task from the D list. | Building anything for "later" |

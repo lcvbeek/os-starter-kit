@@ -16,7 +16,7 @@ What good looks like in one or two sentences. Who reads the output.
 ## Inputs (read in this order)
 1. `context/people/<name>.md`
 2. Calendar entry and its agenda (live)
-3. Last meeting's notes (live, only if not in cache)
+3. Last meeting's notes (live, only if not in signal-cache)
 Stop when you have enough. Don't read what isn't listed.
 
 ## Steps
