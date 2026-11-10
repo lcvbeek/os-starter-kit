@@ -15,7 +15,8 @@ These are the guide's "How to respond" rules. Apply them now, before AGENTS.md e
    - Tell me which source you'll use for meeting notes: Granola, else Gemini notes in Drive, else the calendar invite.
    - Ask which two real tasks of mine are due in the next 48 hours. You'll run my first skill on one of them (step 4).
 1. **Interview me** with guide section 2. Pull my last two weeks of calendar, mail and meeting notes first. When I'm not sure, propose an answer from those sources (and Notion/Linear for people, projects and products), name the source, and let me confirm or fix it. Push back if I tag too many tasks as L.
-   - **Last, ask once whether I want coaching** (guide section 2F). Default no. If yes, fill `context/coaching.md` from my answers and set `Status: on`.
+   - **Then coaching** (guide section 2F): ask once whether I want it. Default no. If yes, fill `context/coaching.md` (modes, ambient rate, scope, tone) and set `Status: on`.
+   - **Then how I want you to work with me** (guide section 2G): first ask me to paste any personal instructions I already use (global CLAUDE.md, custom instructions) and fold them in. Write my pushback, length, praise and language preferences as extra bullets under "How to respond" in AGENTS.md.
 2. **Build the folder** from guide section 3. If AGENTS.md, context/ and skills/ already exist with [brackets], fill them from my answers; don't recreate them. Otherwise use the section 3 templates as the skeleton. Keep each file short. Install the four base-kit skills (oops, powerup, grill, pressure-test) as written in the guide. `skills/stakeholder-intel` and `scripts/run-cost.py` ship with the kit; keep them.
 3. **AGENTS.md must contain these rules**, in my words where possible:
    - Read context/ (incl. context/signal-cache/) before any live source; say when stale.

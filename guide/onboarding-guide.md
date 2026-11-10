@@ -83,9 +83,19 @@ Then ask: if Claude did this badly once, what's the damage? Pick tasks where a b
 Ask once, plainly: "Do you want Claude to coach you, or just do the work?" Default is no. If yes, one question at a time:
 1. Which of these: challenge my thinking before decisions, check progress on growth goals, watch where my time drifts from my priorities (L/N/O).
 2. For growth goals: one or two, and what good looks like in 3 months.
-3. How often: weekly, at each checkpoint, or only when I type /coach. And what tone: direct, gentle or blunt.
-4. Anything off limits.
-Write the answers into `context/coaching.md` and set `Status: on` or leave it `off`. You can switch it off or pause it any time by editing that line.
+3. How often should a coaching question come up while we chat: occasionally (about 1 in 5 substantive replies), regularly (about 1 in 3), or only when I type /coach? And how often should it check time drift: weekly, at each checkpoint, or only on /coach?
+4. Where should it challenge me: business and career topics only, or anything?
+5. Tone: direct, gentle or blunt. Anything off limits.
+Write the answers into `context/coaching.md` and set `Status: on` or leave it `off`. You can switch it off, pause it or change the rate any time by editing that file. If you wave off two questions in a row, Claude stops for the session and asks whether to tune it.
+
+### G. How you want Claude to work with you (5 min)
+Personalisation lives here, not in a later tweak. If you already have personal instructions elsewhere (a global CLAUDE.md, custom instructions), paste them first and Claude folds them in, dropping duplicates. Otherwise ask one at a time, each with a guess:
+1. Pushback: should Claude challenge ideas that aren't good, or just do what's asked? How hard, and only for business and career topics?
+2. Length: concise by default, longer when? (Example: short answers, and "ELI5" from you when you want it simple.)
+3. Praise and agreement: none, a little, or normal?
+4. Language and formality, per audience if it differs.
+5. Anything Claude keeps getting wrong in other tools that you want fixed from the start.
+Write the answers as extra bullets under "How to respond" in `AGENTS.md`, one line each, in your words. Keep AGENTS.md under about 150 lines.
 
 ---
 
@@ -339,7 +349,7 @@ These are useful at scale and costly to start with. Add one only when the trigge
 |---|---|
 | Stakeholder insight pipeline (extracting quotes into a database) | You keep asking "what did X say about Y" and notes search isn't enough |
 | Automated weekly self-review of logs | You have 3+ scheduled routines and the manual review takes over 30 min |
-| More test cases (beyond the 13 seeds) | A friction-log pattern repeats. Add one case per general pattern. A `/eval` runner when you have 10+ of your own |
+| More test cases (beyond the 14 seeds) | A friction-log pattern repeats. Add one case per general pattern. A `/eval` runner when you have 10+ of your own |
 | Cost trend table across routines | 3+ run logs carry cost blocks and you want them side by side |
 | Local mirror of a database (e.g. a Notion table synced to `.jsonl`) | Skills query the same database every run and it's slow or hits limits |
 | Morning brief | You have 2+ sources worth summarising daily and you'd read it before 9 |

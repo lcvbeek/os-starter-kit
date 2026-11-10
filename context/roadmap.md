@@ -18,7 +18,7 @@ Check each trigger at every checkpoint. Add the thing only when its trigger is m
 |---|---|---|
 | Stakeholder insight pipeline | I keep asking "what did X say about Y" and notes search isn't enough | not triggered |
 | Automated weekly self-review of logs | 3+ scheduled routines and the manual review takes over 30 min | not triggered |
-| More test cases (beyond the 13 seeds in `evals/`) | A friction-log pattern repeats. A `/eval` runner at 10+ of my own cases | not triggered |
+| More test cases (beyond the 14 seeds in `evals/`) | A friction-log pattern repeats. A `/eval` runner at 10+ of my own cases | not triggered |
 | Cost trend table across routines | 3+ run logs carry cost blocks | not triggered |
 | Local mirror of a database | Skills query the same database every run and it's slow or hits limits | not triggered |
 | Morning brief | 2+ sources worth summarising daily and I'd read it before 9 | not triggered |

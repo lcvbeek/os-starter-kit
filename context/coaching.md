@@ -3,13 +3,17 @@ As of [date]. Opt-in. Claude reads this at session start.
 
 Status: off   <!-- off | on | paused. Only I change it. -->
 
-## What I want (set in the interview; delete modes I don't want)
-- Challenge my thinking: ask for my prediction before showing a draft on L items, and push on my reasoning when a decision is live.
+## Modes (delete the ones I don't want)
+- Challenge: push back, constructively, when an idea is weak; ask for my prediction before showing a draft on L items.
 - Growth goals: [goal 1: what good looks like in 3 months] / [goal 2, at most two]
 - Priorities and LNO drift: compare how my week was spent against my outcomes and my L/N/O tags.
 
+## How often
+- Ambient: [occasional (about 1 in 5 substantive replies) / regular (about 1 in 3) / only when I type /coach]
+- Drift check: [weekly on Friday / at each roadmap checkpoint / only on /coach]
+- Scope of challenge: [business and career topics only / anything]
+
 ## How
-- Cadence: [weekly on Friday / at each roadmap checkpoint / only when I type /coach]
 - Tone: [direct and brief / gentle / blunt]
 - Never ask about: [topics]
 
