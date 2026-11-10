@@ -330,4 +330,4 @@ These are useful at scale and costly to start with. Add one only when the trigge
 
 ## 6. Starting the setup
 
-Use [`bootstrap-prompt.md`](bootstrap-prompt.md) (called `BOOTSTRAP.md` in the starter kit): put this guide and that file in the repo root, open the repo in Claude Code, and say "Read BOOTSTRAP.md and follow it." The file holds all the instructions, so there is nothing to paste.
+Use [`BOOTSTRAP.md`](../BOOTSTRAP.md) (it lives in the repo root): if you are not starting from the kit, put this guide and that file in the repo root, open the repo in Claude Code, and say "Read BOOTSTRAP.md and follow it." The file holds all the instructions, so there is nothing to paste.
