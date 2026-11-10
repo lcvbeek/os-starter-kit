@@ -73,11 +73,36 @@ def check_contract():
                     break
 
 
+def check_eval_cases():
+    d = ROOT / "evals" / "cases"
+    if not d.exists():
+        return
+    for c in sorted(d.glob("*.md")):
+        body = c.read_text(encoding="utf-8")
+        fm = re.match(r"^---\n(.*?)\n---", body, re.S)
+        if not fm:
+            fail(f"evals/{c.name} has no frontmatter")
+            continue
+        for key in ("id:", "target:", "rule:", "source:"):
+            if key not in fm.group(1):
+                fail(f"evals/{c.name} frontmatter is missing {key}")
+        for sec in ("## Input", "## Expected", "## Fails if", "## Why this case exists"):
+            if sec not in body:
+                fail(f"evals/{c.name} is missing '{sec}'")
+        m = re.search(r"^id:\s*(\S+)", fm.group(1), re.M)
+        if m and m.group(1) != c.stem:
+            fail(f"evals/{c.name} declares id '{m.group(1)}', must match the filename")
+        m = re.search(r"^target:\s*(\S+)", fm.group(1), re.M)
+        if m and not (ROOT / m.group(1)).exists():
+            fail(f"evals/{c.name} targets {m.group(1)}, which does not exist")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args()
     check_contract()
+    check_eval_cases()
     if not args.quiet:
         for m in WARN:
             print(f"warn  {m}")

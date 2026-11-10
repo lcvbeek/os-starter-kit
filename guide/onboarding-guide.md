@@ -12,7 +12,7 @@ A way to set up a small personal OS with Claude in about 90 minutes, from scratc
 |---|---|---|
 | Inputs | Where signal comes from | The tools you connect (mail, calendar, meeting notes, docs). Read-only. |
 | Memory | Files in a git repo, read before any live source | `context/` (confirmed facts, plus `context/signal-cache/` for derived digests of live sources) |
-| Work | Repeatable jobs, one instruction file each | 4 base skills (oops, powerup, grill, pressure-test) plus 2 task skills picked in the interview below |
+| Work | Repeatable jobs, one instruction file each | stakeholder-intel, 4 base skills (oops, powerup, grill, pressure-test), plus 2 task skills picked in the interview below |
 | Loop | Corrections become rules | `logs/friction-log.md` + a 15-minute review every 2 weeks |
 
 Rules that make it work:
@@ -92,15 +92,19 @@ my-os/                     # private git repo
 │   ├── priorities.md      # outcomes, constraints, open questions (from A)
 │   ├── people.md          # key people, one short block each (from A2)
 │   ├── roadmap.md         # first-month checkpoints, gates, don't-build-yet triggers (section 4, 5)
+│   ├── voice.md           # how I write: seeded from sent mail, sharpened by my edits
 │   └── signal-cache/      # derived, written by skills, expires after ~5 weeks
 │       └── YYYY-MM-DD.md  # one digest per day: meetings, mail, chat
 ├── skills/
 │   ├── <skill-1>/SKILL.md # top pick from D
 │   ├── <skill-2>/SKILL.md # second pick from D
+│   ├── stakeholder-intel/SKILL.md  # core: quoted signal about key people, fills signal-cache
 │   ├── oops/SKILL.md      # base kit: logs corrections
 │   ├── powerup/SKILL.md   # base kit: sharpen a vague ask
 │   ├── grill/SKILL.md     # base kit: interview me to a shared decision
 │   └── pressure-test/SKILL.md  # base kit: challenge a plan or draft
+├── scripts/run-cost.py    # run cost per session/run, appended to logs
+├── evals/cases/*.md       # golden test cases, one per rule
 └── logs/                  # friction-log.md (corrections) + one file per scheduled skill
 ```
 
@@ -325,11 +329,11 @@ These are useful at scale and costly to start with. Add one only when the trigge
 |---|---|
 | Stakeholder insight pipeline (extracting quotes into a database) | You keep asking "what did X say about Y" and notes search isn't enough |
 | Automated weekly self-review of logs | You have 3+ scheduled routines and the manual review takes over 30 min |
-| Test cases for skills (golden set) | The same mistake comes back after you fixed the skill |
-| Cost tracking per run | Monthly spend surprises you |
+| More test cases (beyond the 11 seeds) | A friction-log pattern repeats. Add one case per general pattern. A `/eval` runner when you have 10+ of your own |
+| Cost trend table across routines | 3+ run logs carry cost blocks and you want them side by side |
 | Local mirror of a database (e.g. a Notion table synced to `.jsonl`) | Skills query the same database every run and it's slow or hits limits |
 | Morning brief | You have 2+ sources worth summarising daily and you'd read it before 9 |
-| Writing-voice skill | You draft many messages and keep rewriting tone |
+| Writing-voice skill | `context/voice.md` alone isn't enough: you still rewrite most drafts |
 
 ---
 

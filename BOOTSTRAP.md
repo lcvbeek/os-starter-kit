@@ -15,7 +15,7 @@ These are the guide's "How to respond" rules. Apply them now, before AGENTS.md e
    - Tell me which source you'll use for meeting notes: Granola, else Gemini notes in Drive, else the calendar invite.
    - Ask which two real tasks of mine are due in the next 48 hours. You'll run my first skill on one of them (step 4).
 1. **Interview me** with guide section 2. Pull my last two weeks of calendar, mail and meeting notes first. When I'm not sure, propose an answer from those sources (and Notion/Linear for people, projects and products), name the source, and let me confirm or fix it. Push back if I tag too many tasks as L.
-2. **Build the folder** from guide section 3. If AGENTS.md, context/ and skills/ already exist with [brackets], fill them from my answers; don't recreate them. Otherwise use the section 3 templates as the skeleton. Keep each file short. Install the four base-kit skills (oops, powerup, grill, pressure-test) as written in the guide.
+2. **Build the folder** from guide section 3. If AGENTS.md, context/ and skills/ already exist with [brackets], fill them from my answers; don't recreate them. Otherwise use the section 3 templates as the skeleton. Keep each file short. Install the four base-kit skills (oops, powerup, grill, pressure-test) as written in the guide. `skills/stakeholder-intel` and `scripts/run-cost.py` ship with the kit; keep them.
 3. **AGENTS.md must contain these rules**, in my words where possible:
    - Read context/ (incl. context/signal-cache/) before any live source; say when stale.
    - Save a dated digest to context/signal-cache/<date>.md after every live fetch.
@@ -25,9 +25,10 @@ These are the guide's "How to respond" rules. Apply them now, before AGENTS.md e
    - When I correct an output, log it with the oops skill.
    - Commit and push after every reply that changed a file.
    - Never send, delete or edit shared docs without asking.
-4. **First win, same session.** Take one of the two tasks from step 0 that matches skill 1, run the skill on it, and show me the output. Log whatever I correct with oops, then update the skill once.
-5. **Commit and push everything.**
+4. **First win, same session.** Take one of the two tasks from step 0 that matches skill 1, run the skill on it, and show me the output. Log whatever I correct with oops, then update the skill once. Then run `stakeholder-intel` once on today's signal so `context/signal-cache/` gets its first file, and show me the proposed quotes.
+   - **Voice:** read my last 30 to 50 sent mails and messages (read-only) and fill the Seed section of `context/voice.md`: one line per pattern with a short quote, `weak` if seen fewer than 3 times. I confirm or fix it.
+5. **Commit and push everything.** End the session by appending a `### Run cost` block from `python3 scripts/run-cost.py` to `logs/setup-cost.md`, so I have a baseline.
 6. **Write down my day-2 return test** (guide, section 3b): the one-line question I'll ask tomorrow, and what a good answer must contain.
 7. **Write `context/roadmap.md`** from the guide's section 4 plan: fill the four checkpoint dates (from today) and keep the gates and the "Don't build yet" table. Commit and push it, then tell me the four dates.
 
-Do not build anything from guide section 5. Do not add skills beyond the base kit and the two I picked.
+Do not build anything from guide section 5. Do not add skills beyond the base kit, stakeholder-intel and the two I picked.

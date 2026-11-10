@@ -22,7 +22,7 @@ In an agent run, each turn re-reads everything before it. A run with 18 turns an
 - Fixed overhead (system prompt, tools, skill list) is paid once per session and once per subagent. Don't spawn subagents for small things.
 
 ## 5. Measure it
-Have each scheduled run log its own cost, turns and model to `logs/`. A small script that reads the transcript is enough. Review weekly: top 3 most expensive routines, and whether their output was used. An output nobody read is the cheapest thing to delete.
+Have each scheduled run log its own cost, turns and model to `logs/`. `scripts/run-cost.py` ships with the kit: it reads the transcript and prints the block to append. Review weekly: top 3 most expensive routines, and whether their output was used. An output nobody read is the cheapest thing to delete.
 Two cautions from experience: verify the cost script itself (ours double-counted turns for weeks, so only ratios were trustworthy), and don't optimise output length until text is >20% of total cost; it's usually 5 to 25%.
 
 ## Checklist for a new routine

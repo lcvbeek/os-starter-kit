@@ -1,39 +1,77 @@
 {
- "_doc": "Who reads and writes what. Checked by eval-lint.py. Edit this in the same commit whenever a skill gains or loses a store. Store flags: external (lives outside the repo, e.g. mail, calendar), human (only I write it), terminal (a chat reply, nothing on disk). A store nobody writes fails the lint unless flagged; a store nobody reads warns. Layers are yours to define (for example capture, work, proof, loop).",
+ "_doc": "Who reads and writes what. Checked by eval-lint.py. Edit this in the same commit whenever a skill gains or loses a store. Store flags: external (lives outside the repo, e.g. mail, calendar), human (only I write it), terminal (a chat reply, nothing on disk). A store nobody writes fails the lint unless flagged; a store nobody reads warns. Layers are yours to define (capture, work, proof, loop).",
  "stores": {
   "context": {
-   "paths": ["context"],
-   "desc": "Confirmed facts, moved in only after I confirm",
+   "paths": [
+    "context"
+   ],
+   "desc": "Confirmed facts and voice: priorities, people, roadmap, voice",
    "human": true
   },
+  "signal-cache": {
+   "paths": [
+    "context/signal-cache"
+   ],
+   "desc": "One derived digest per day of live sources, expires after ~5 weeks"
+  },
   "logs": {
-   "paths": ["logs"],
-   "desc": "Run logs and the friction log"
+   "paths": [
+    "logs"
+   ],
+   "desc": "Run logs, friction log, cost baseline"
+  },
+  "sources": {
+   "external": true,
+   "desc": "Mail, calendar, chat, meeting notes, docs: read-only"
   }
  },
  "skills": {
+  "stakeholder-intel": {
+   "layer": "capture",
+   "trigger": "on-demand",
+   "reads": [
+    "context",
+    "signal-cache",
+    "sources"
+   ],
+   "writes": [
+    "signal-cache",
+    "context",
+    "logs"
+   ]
+  },
   "grill": {
    "layer": "work",
    "trigger": "on-demand",
-   "reads": ["context"],
+   "reads": [
+    "context"
+   ],
    "writes": []
   },
   "oops": {
    "layer": "loop",
    "trigger": "on-demand",
-   "reads": ["logs"],
-   "writes": ["logs"]
+   "reads": [
+    "logs"
+   ],
+   "writes": [
+    "logs"
+   ]
   },
   "powerup": {
    "layer": "work",
    "trigger": "on-demand",
-   "reads": ["context"],
+   "reads": [
+    "context"
+   ],
    "writes": []
   },
   "pressure-test": {
    "layer": "work",
    "trigger": "on-demand",
-   "reads": ["context"],
+   "reads": [
+    "context"
+   ],
    "writes": []
   }
  },
